@@ -5,9 +5,7 @@ import menu from "../assets/menu.png"
 import close from "../assets/close.png"
 import { useSelector } from 'react-redux'
 import {BiCart} from"react-icons/bi"
-import { useAuth0 } from "@auth0/auth0-react";
 const Navbar = () => {
-  const { loginWithRedirect,logout , isAuthenticated } = useAuth0();
   const {cartitem} = useSelector(state=>state.cart);
   function menuFun(){
     let menuBtn=document.querySelector(".menu");
@@ -31,9 +29,6 @@ const Navbar = () => {
             <Link onClick={closefun} className='nava'  to="/">Home</Link>
             <Link onClick={closefun} className='nava'  to="/Cart"><BiCart className='carticon'/> <span className='cartval'>{cartitem.length}</span></Link>
             <Link onClick={closefun} className='nava'  to="/Contact">Contact</Link>
-           {
-             isAuthenticated ? (<Link className='nava' onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</Link> ):(<Link className='nava' onClick={() => loginWithRedirect()}>Log In</Link>)
-           }
         </main>
         <img onClick={menuFun}  className="menu" src={menu} alt="" />
     </nav>
